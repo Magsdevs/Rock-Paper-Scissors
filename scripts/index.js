@@ -24,31 +24,19 @@ const playerSelection = promptValue();
 console.log(playerSelection);
 
 function playRound(playerSelection, computerSelection) {
-  let winner = '';
+  let PlayerWinner = 'Player Wins, Paper beats Rock';
+  let tie = 'There is a Draw';
+  let computerWinner = 'Computer Wins, Rock beats Scissor';
 
-  if (playerSelection === computerSelection) {
-    winner = `There is no winner`;
-  }
-  if (playerSelection === 'rock' && computerSelection === 'scissor') {
-    winner = 'Player Wins, Rock beats Scissor';
-  }
-  if (playerSelection === 'paper' && computerSelection === 'rock') {
-    winner = 'Player Wins, Paper beats Rock';
-  }
-  if (playerSelection === 'scissor' && computerSelection === 'paper') {
-    winner = 'Player Wins, Scissor beats Paper';
-  }
-
-  if (computerSelection === 'rock' && playerSelection === 'scissor') {
-    winner = 'Computer Wins, Rock beats Scissor';
-  }
-  if (computerSelection === 'paper' && playerSelection === 'rock') {
-    winner = 'Computer Wins, Paper beats Rock';
-  }
-  if (computerSelection === 'scissor' && playerSelection === 'paper') {
-    winner = 'Computer Wins, Scissor beats Paper';
-  }
-  return winner;
+  return playerSelection === computerSelection
+    ? tie
+    : playerSelection === 'rock' && computerSelection === 'scissor'
+    ? PlayerWinner
+    : playerSelection === 'paper' && computerSelection === 'rock'
+    ? PlayerWinner
+    : playerSelection === 'scissor' && computerSelection === 'paper'
+    ? PlayerWinner
+    : computerWinner;
 }
 
 console.log(playRound(playerSelection, computerSelection));
