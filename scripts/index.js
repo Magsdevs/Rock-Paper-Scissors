@@ -1,14 +1,16 @@
-// Generate a random choice
+const gameWinner = 'is the Game Winner';
+const noWinner = 'None of the participants win, They got same points.';
+let playerCount = 0;
+let computerCount = 0;
+
+// Generate a random choice///////////////////////////////////////
 function getComputerChoice() {
   const choices = ['Rock', 'Paper', 'Scissor'];
   const random = Math.floor(Math.random() * choices.length);
   return choices.at(random).toLowerCase();
 }
 
-const computerSelection = getComputerChoice();
-console.log(computerSelection);
-
-// Get the user input value of the Prompt Windows
+// Get the user input value of the Prompt Windows/////////////////////
 function promptValue() {
   let promptValue = '';
   while (promptValue === null || promptValue === '') {
@@ -20,23 +22,38 @@ function promptValue() {
   return promptValue.toLowerCase();
 }
 
-const playerSelection = promptValue();
-console.log(playerSelection);
-
 function playRound(playerSelection, computerSelection) {
-  let PlayerWinner = 'Player Wins, Paper beats Rock';
-  let tie = 'There is a Draw';
-  let computerWinner = 'Computer Wins, Rock beats Scissor';
+  const PlayerWinner = `Player Wins, ${playerSelection} beats ${computerSelection}`;
+  const tie = 'There is a Draw';
+  const computerWinner = `Computer Wins, ${computerSelection} beats ${playerSelection}`;
+  let result = '';
 
-  return playerSelection === computerSelection
-    ? tie
+  playerSelection === computerSelection
+    ? (result = tie)
     : playerSelection === 'rock' && computerSelection === 'scissor'
-    ? PlayerWinner
+    ? (playerCount++, (result = PlayerWinner))
     : playerSelection === 'paper' && computerSelection === 'rock'
-    ? PlayerWinner
+    ? (playerCount++, (result = PlayerWinner))
     : playerSelection === 'scissor' && computerSelection === 'paper'
-    ? PlayerWinner
-    : computerWinner;
+    ? (playerCount++, (result = PlayerWinner))
+    : (computerCount++, (result = computerWinner));
+  return result;
 }
 
-console.log(playRound(playerSelection, computerSelection));
+function winnerResult() {
+  return (finalResult =
+    playerCount > computerCount
+      ? `The Player ${gameWinner}`
+      : playerCount < computerCount
+      ? `The Computer ${gameWinner}`
+      : noWinner);
+}
+
+function game() {
+  for (let i = 1; i < 6; i++) {
+    console.log(playRound(promptValue(), getComputerChoice()));
+  }
+  return winnerResult();
+}
+
+console.log(game());
