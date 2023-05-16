@@ -22,6 +22,7 @@ function promptValue() {
   return promptValue.toLowerCase();
 }
 
+// Generate a winner Player vs Computer
 function playRound(playerSelection, computerSelection) {
   const PlayerWinner = `Player Wins, ${playerSelection} beats ${computerSelection}`;
   const tie = 'There is a Draw';
@@ -40,6 +41,8 @@ function playRound(playerSelection, computerSelection) {
   return result;
 }
 
+// Print a Result Message to the Console Comparing the final result
+
 function winnerResult() {
   return (finalResult =
     playerCount > computerCount
@@ -49,6 +52,7 @@ function winnerResult() {
       : noWinner);
 }
 
+// Loop 5 times playAround() to play a Best of 5
 function game() {
   for (let i = 1; i < 6; i++) {
     console.log(playRound(promptValue(), getComputerChoice()));
