@@ -16,6 +16,7 @@ const scissorId = document.getElementById('scissor');
 let playerCount = 0;
 let computerCount = 0;
 const choices = ['Rock', 'Paper', 'Scissor'];
+const WINNER_SCORE = 5
 
 //////////////////////////////// Generate a random choice///////////////////////////////////////
 function getComputerChoice() { 
@@ -37,9 +38,9 @@ function eventHandler(e) {
 
 ///////////////////////////// Final WInner Handler
 function finalWinner(player, computer) {
-  if (player === 5 || computer === 5) {
+  if (player === WINNER_SCORE || computer === WINNER_SCORE) {
     messageWinner.textContent = `${
-      player === 5 ? 'Player' : 'Computer'
+      player === WINNER_SCORE ? 'Player' : 'Computer'
     } is the winner`;
     roundWinner.textContent = 'Click Down To Play Again';
     stopPoints();
