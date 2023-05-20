@@ -5,10 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,100&display=swap"
+      rel="stylesheet"
+    />
+    <script src="scripts/index.js" defer></script>
     <title>Rock Paper Scissors</title>
   </head>
   <body>
-    <script src="scripts/index.js"></script>
+    <h1>Rock Paper Scissors</h1>
+    <div class="container">
+      <div class="player-content">
+        <p id="player-score">
+          Player Score: <span class="player-score">0</span>
+        </p>
+        <img
+          id="scissor"
+          class="scissor"
+          src="imgs/scissor.png"
+          alt="scissors"
+        />
+        <img id="paper" class="paper" src="imgs/paper.png" alt="paper" />
+        <img id="rock" class="rock" src="imgs/rock.png" alt="rock" />
+      </div>
+      <div class="message-content">
+        <h2 id="message-winner">LETS PLAY!!</h2>
+        <p class="round-winner">Pick a Choice</p>
+        <div class="buttons-container">
+          <button id="reset">Play Again!</button>
+        </div>
+      </div>
+      <div class="computer-content">
+        <p id="computer-score">
+          <span class="computer-score">0</span> :Computer Score
+        </p>
+        <img class="computer-scissor" src="imgs/scissor.png" alt="scissors" />
+        <img class="computer-paper" src="imgs/paper.png" alt="paper" />
+        <img class="computer-rock" src="imgs/rock.png" alt="rock" />
+      </div>
+    </div>
   </body>
 </html>
-l

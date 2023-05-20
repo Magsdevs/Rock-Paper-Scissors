@@ -1,25 +1,73 @@
-const gameWinner = 'is the Game Winner';
-const noWinner = 'None of the participants win, They got same points.';
+//////////////// DOM Variables
+const body = document.querySelector('body');
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissor = document.querySelector('.scissor');
+const messageWinner = document.querySelector('#message-winner');
+const playerScore = document.querySelector('.player-score');
+const computerScore = document.querySelector('.computer-score');
+const roundWinner = document.querySelector('.round-winner');
+const btnReset = document.querySelector('#reset');
+const rockId = document.getElementById('rock');
+const paperId = document.getElementById('paper');
+const scissorId = document.getElementById('scissor');
+
+////////////// Global Score Variables
 let playerCount = 0;
 let computerCount = 0;
 
-// Generate a random choice///////////////////////////////////////
+//////////////////////////////// Generate a random choice///////////////////////////////////////
 function getComputerChoice() {
   const choices = ['Rock', 'Paper', 'Scissor'];
   const random = Math.floor(Math.random() * choices.length);
   return choices.at(random).toLowerCase();
 }
 
-// Get the user input value of the Prompt Windows/////////////////////
-function promptValue() {
-  let promptValue = '';
-  while (promptValue === null || promptValue === '') {
-    promptValue = window.prompt(
-      'Pick a Choice to play:  Rock, Paper or Scissors',
-      ''
-    );
+/////////////////////////////// Event Handler
+function eventHandler(e) {
+  let val = e.target.classList.value;
+  if (val === 'rock' || val === 'paper' || val === 'scissor') {
+    playRound(val, getComputerChoice());
+    playerScore.textContent = playerCount.toString();
+    computerScore.textContent = computerCount.toString();
   }
-  return promptValue.toLowerCase();
+
+  finalWinner(playerCount, computerCount);
+}
+
+///////////////////////////// Final WInner Handler
+function finalWinner(player, computer) {
+  if (player === 5 || computer === 5) {
+    messageWinner.textContent = `${
+      player === 5 ? 'Player' : 'Computer'
+    } is the winner`;
+    roundWinner.textContent = 'Click Down To Play Again';
+    stopPoints();
+  }
+}
+
+//////////////////////////// Stop to Add points
+function stopPoints() {
+  playerCount = 0;
+  computerCount = 0;
+  rockId.classList.add('disabled');
+  paperId.classList.add('disabled');
+  scissorId.classList.add('disabled');
+}
+
+///////////////////////////// Button Reset
+
+function reset() {
+  playerCount = 0;
+  computerCount = 0;
+  playerScore.textContent = '0';
+  computerScore.textContent = '0';
+  roundWinner.textContent = 'Pick a Choice';
+  messageWinner.innerHTML = 'LETS PLAY!!';
+  rockId.classList.remove('disabled');
+  paperId.classList.remove('disabled');
+  scissorId.classList.remove('disabled');
+  body.style.backgroundColor = 'aqua';
 }
 
 // Generate a winner Player vs Computer
@@ -30,34 +78,25 @@ function playRound(playerSelection, computerSelection) {
   let result = '';
 
   playerSelection === computerSelection
-    ? (result = tie)
+    ? ((result = roundWinner.textContent = tie),
+      (body.style.backgroundColor = 'white'))
     : playerSelection === 'rock' && computerSelection === 'scissor'
-    ? (playerCount++, (result = PlayerWinner))
+    ? (playerCount++,
+      (result = roundWinner.textContent = PlayerWinner),
+      (body.style.backgroundColor = 'green'))
     : playerSelection === 'paper' && computerSelection === 'rock'
-    ? (playerCount++, (result = PlayerWinner))
+    ? (playerCount++,
+      (result = roundWinner.textContent = PlayerWinner),
+      (body.style.backgroundColor = 'green'))
     : playerSelection === 'scissor' && computerSelection === 'paper'
-    ? (playerCount++, (result = PlayerWinner))
-    : (computerCount++, (result = computerWinner));
+    ? (playerCount++,
+      (result = roundWinner.textContent = PlayerWinner),
+      (body.style.backgroundColor = 'green'))
+    : (computerCount++,
+      (result = roundWinner.textContent = computerWinner),
+      (body.style.backgroundColor = 'red'));
   return result;
 }
 
-// Print a Result Message to the Console Comparing the final result
-
-function winnerResult() {
-  return (finalResult =
-    playerCount > computerCount
-      ? `The Player ${gameWinner}`
-      : playerCount < computerCount
-      ? `The Computer ${gameWinner}`
-      : noWinner);
-}
-
-// Loop 5 times playAround() to play a Best of 5
-function game() {
-  for (let i = 1; i < 6; i++) {
-    console.log(playRound(promptValue(), getComputerChoice()));
-  }
-  return winnerResult();
-}
-
-console.log(game());
+document.addEventListener('click', eventHandler);
+btnReset.addEventListener('click', reset);

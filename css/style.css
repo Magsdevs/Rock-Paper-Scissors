@@ -5,4 +5,113 @@
 }
 body {
   background-color: aqua;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/*Title*/
+
+h1 {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/*Container*/
+
+.container {
+  background: gray;
+  width: 1200px;
+  height: 700px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 60px;
+}
+
+/*content style*/
+
+.computer-content,
+.player-content,
+.message-content {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  font-size: 20px;
+}
+
+.computer-content p,
+.player-content p {
+  font-weight: 700;
+}
+
+.message-content {
+  justify-content: space-around;
+  height: 600px;
+  text-align: center;
+}
+
+.player-content .scissor,
+.player-content .paper {
+  transform: rotate(180deg);
+  transform: scaleY(-1);
+}
+
+.player-content .rock {
+  transform: scaleX(-1);
+}
+
+/*image style*/
+img {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+}
+
+.scissor,
+.paper,
+.computer-scissor,
+.computer-paper {
+  rotate: -90deg;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+/*Winner*/
+
+.round-winner {
+  font-size: 20px;
+  font-weight: 700;
+  height: 100px;
+  align-self: center;
+  justify-self: start;
+}
+
+.message-winner {
+  font-size: 16px;
+  font-weight: 700;
+  height: 250px;
+}
+
+/*Button*/
+
+button {
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
