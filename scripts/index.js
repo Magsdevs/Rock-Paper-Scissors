@@ -15,17 +15,17 @@ const scissorId = document.getElementById('scissor');
 ////////////// Global Score Variables
 let playerCount = 0;
 let computerCount = 0;
-const choices = ['rock', 'paper', 'scissor'];
 const WINNER_SCORE = 5;
 //////////////////////////////// Generate a random choice///////////////////////////////////////
 function getComputerChoice() {
-  const choices = ['Rock', 'Paper', 'Scissor'];
+  const choices = ['rock', 'paper', 'scissor'];
   const random = Math.floor(Math.random() * choices.length);
   return choices.at(random);
 }
 
 /////////////////////////////// Event Handler
 function eventHandler(e) {
+  const choices = ['rock', 'paper', 'scissor'];
   let val = e.target.classList.value;
   if (choices.includes(val)) {
     playRound(val, getComputerChoice());
