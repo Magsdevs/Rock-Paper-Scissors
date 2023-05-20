@@ -71,6 +71,9 @@ function reset() {
 }
 
 // Generate a winner Player vs Computer
+
+// Generate a winner Player vs Computer
+
 function playRound(playerSelection, computerSelection) {
   const PlayerWinner = `Player Wins, ${playerSelection} beats ${computerSelection}`;
   const tie = 'There is a Draw';
