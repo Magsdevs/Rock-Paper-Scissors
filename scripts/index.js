@@ -15,10 +15,10 @@ const scissorId = document.getElementById('scissor');
 ////////////// Global Score Variables
 let playerCount = 0;
 let computerCount = 0;
+const choices = ['Rock', 'Paper', 'Scissor'];
 
 //////////////////////////////// Generate a random choice///////////////////////////////////////
-function getComputerChoice() {
-  const choices = ['Rock', 'Paper', 'Scissor'];
+function getComputerChoice() { 
   const random = Math.floor(Math.random() * choices.length);
   return choices.at(random).toLowerCase();
 }
@@ -26,7 +26,7 @@ function getComputerChoice() {
 /////////////////////////////// Event Handler
 function eventHandler(e) {
   let val = e.target.classList.value;
-  if (val === 'rock' || val === 'paper' || val === 'scissor') {
+  if (choices.includes(val)) {
     playRound(val, getComputerChoice());
     playerScore.textContent = playerCount.toString();
     computerScore.textContent = computerCount.toString();
