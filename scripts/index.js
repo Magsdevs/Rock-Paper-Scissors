@@ -16,9 +16,10 @@ const scissorId = document.getElementById('scissor');
 let playerCount = 0;
 let computerCount = 0;
 const choices = ['rock', 'paper', 'scissor'];
-
+const WINNER_SCORE = 5;
 //////////////////////////////// Generate a random choice///////////////////////////////////////
 function getComputerChoice() {
+  const choices = ['Rock', 'Paper', 'Scissor'];
   const random = Math.floor(Math.random() * choices.length);
   return choices.at(random);
 }
@@ -37,9 +38,9 @@ function eventHandler(e) {
 
 ///////////////////////////// Final WInner Handler
 function finalWinner(player, computer) {
-  if (player === 5 || computer === 5) {
+  if (player === WINNER_SCORE || computer === WINNER_SCORE) {
     messageWinner.textContent = `${
-      player === 5 ? 'Player' : 'Computer'
+      player === WINNER_SCORE ? 'Player' : 'Computer'
     } is the winner`;
     roundWinner.textContent = 'Click Down To Play Again';
     stopPoints();
@@ -69,8 +70,6 @@ function reset() {
   scissorId.classList.remove('disabled');
   body.style.backgroundColor = 'aqua';
 }
-
-// Generate a winner Player vs Computer
 
 // Generate a winner Player vs Computer
 
